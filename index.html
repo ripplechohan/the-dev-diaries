@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <div>
+                <h1>RIPPLE CHOHAN</h1> 
+                <p class="para0">
+                    <span>Web developer</span> <br> Passionate about building user-friendly and <br> visually engaging websites.<br>
+                    Ready to bring your vision to life!
+                </p>
+                <button class="btn" onclick="scrollToSection('about')">Learn More About Me</button>
+            </div>
+        </div>
+
+       
+        
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h1 class="aboutHead">About Me</h1>
+            <div class="about">
+            <div class="left">
+            <p>Hi, I’m Ripple Chohan, a passionate web developer with a flair for creating visually appealing and highly functional websites. With a strong foundation in programming and design, I specialize in crafting user-centric digital experiences that are both innovative and intuitive.
+
+                Whether I’m designing responsive interfaces, optimizing back-end functionality, or integrating complex databases, I thrive on turning ideas into reality. My expertise spans across HTML, CSS, JavaScript, and frameworks like React and Node.js, allowing me to build seamless solutions tailored to meet diverse client needs.
+                
+                Beyond coding, I bring a creative eye to problem-solving, ensuring that every project I touch stands out in both performance and aesthetics. When I’m not at my desk, you’ll likely find me exploring the latest tech trends, brainstorming new project ideas, or enjoying a good sci-fi series.
+                
+                Let’s create something amazing together!</p>
+            </div>
+            <div class="right"> <img id="rippleimage" src="Ripple.jpg" alt=""> </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+        <h1>Projects</h1>
+        <div id="project-list">
+            <!-- Dynamically added projects will appear here -->
+        </div>
+        <div id="add-project">
+            <h2>Add a New Project</h2>
+            <input type="file" id="zip-upload" accept=".zip">
+            <input type="file" id="cover-upload" accept="image/*">
+            <textarea id="project-description" placeholder="Enter project description"></textarea>
+            <button id="add-project-btn">Add Project</button>
+        </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h1>Contact Me</h1>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button class="btn" type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script>
+    const addProjectButton = document.getElementById('add-project-btn');
+    const projectList = document.getElementById('project-list');
+
+    addProjectButton.addEventListener('click', () => {
+        const zipFile = document.getElementById('zip-upload').files[0];
+        const coverImage = document.getElementById('cover-upload').files[0];
+        const description = document.getElementById('project-description').value;
+
+        if (!zipFile || !coverImage || !description) {
+            alert('Please provide a ZIP file, a cover image, and a description.');
+            return;
+        }
+
+        const reader = new FileReader();
+
+        // Process ZIP file
+        reader.onload = async (event) => {
+            const zip = await JSZip.loadAsync(event.target.result);
+
+            // Create a new project container
+            const projectDiv = document.createElement('div');
+            projectDiv.className = 'project';
+
+            // Process the cover image
+            const coverReader = new FileReader();
+            coverReader.onload = (coverEvent) => {
+                projectDiv.innerHTML = `
+                    <img src="${coverEvent.target.result}" alt="Cover Image">
+                    <p>${description}</p>
+                    <button class="view-files-btn">View Files</button>
+                `;
+                projectList.appendChild(projectDiv);
+
+                // Add file viewing functionality
+                const viewFilesButton = projectDiv.querySelector('.view-files-btn');
+                viewFilesButton.addEventListener('click', () => {
+                    const fileList = Object.keys(zip.files).map(fileName => `<li>${fileName}</li>`).join('');
+                    const fileDisplay = document.createElement('ul');
+                    fileDisplay.innerHTML = fileList;
+                    projectDiv.appendChild(fileDisplay);
+                });
+            };
+            coverReader.readAsDataURL(coverImage);
+        };
+        reader.readAsArrayBuffer(zipFile);
+
+        // Clear input fields after adding the project
+        document.getElementById('zip-upload').value = '';
+        document.getElementById('cover-upload').value = '';
+        document.getElementById('project-description').value = '';
+    });
+
+
+</script>
+</body>
+</html>

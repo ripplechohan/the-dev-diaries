@@ -1,0 +1,250 @@
+
+/* General Styles */
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    
+    
+   
+    
+}
+header {
+    background: #333;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+header a:hover {
+    text-decoration: underline;
+}
+section {
+    padding: 50px 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: auto;
+    
+}
+
+
+h1 {
+    margin-bottom: 20px;
+    color: white;
+    font-size: 50px; 
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Styling for the paragraph with class "para0" */
+/* Styling for the paragraph with class "para0" */
+.para0 {
+    font-family: Georgia, 'Times New Roman', Times, serif; /* Sets a modern and clean font */
+    font-size: 20px; /* Adjusts text size for readability */
+    line-height: 1.6; /* Adds space between lines for better readability */
+    color: #ffffff; /* Sets a dark gray text color for a softer appearance */
+    text-align: center; 
+     /* Restricts the paragraph width to half the page */
+     margin: 20px auto; /* Adds vertical spacing without centering horizontally */
+    padding: 10px 15px; /* Adds inner spacing for better visual structure */
+    
+    border-left: 4px solid #4CAF50; /* Adds a left border for a stylish accent */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+    border-radius: 5px; /* Rounds the corners for a modern feel */
+}
+
+
+.btn {
+    padding: 10px 20px;
+    background: #667c93;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn:hover {
+    background: #444a51;
+}
+
+/* Home Section */
+#home {
+   
+    
+    background-image: url('back.jpg');
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center; /* Centers the image */
+    margin: 0; /* Removes default margins */
+    height: 100vh; /* Ensures the background covers the full viewport height */
+    display: flex; /* Enables Flexbox */
+    justify-content: center; /* Horizontally centers the content */
+    align-items: center; /* Vertically centers the content */
+    height: 100vh; /* Ensures the container takes up the full viewport height */
+    margin: 0; /* Removes default margins */
+    
+
+}
+
+#home .left-panel
+{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#home .left-panel {
+    text-align: center;
+    padding-left: 50px;
+}
+
+
+
+/* About Section */
+#about {
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+}
+
+.aboutHead {
+    color: #333;
+}
+.about{
+    display: flex; /* Enables Flexbox layout */
+    justify-content: space-between; /* Ensures space between left and right divs */
+    align-items: center; /* Aligns items vertically in the center */
+    padding: 20px; /* Optional: Adds spacing inside the container */
+    gap: 20px; /* Adds spacing between the left and right divs */
+}
+
+.left {
+     /* Allows the text to take up available space */
+    text-align: left; /* Aligns text to the left */
+}
+
+.right {
+    /* Ensures the image div takes up available space */
+    text-align: right; /* Aligns the image to the right */
+}
+#rippleimage {
+    max-width: 80%; /* Ensures the image scales within its container */
+    max-height: 100%;
+    height: auto; /* Maintains the image aspect ratio */
+    border-radius: 10px; /* Optional: Adds rounded corners to the image */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for visual effect */
+}
+
+
+/* Projects Section */
+#projects {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#add-project {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+}
+
+input, textarea, button {
+    display: block;
+    width: calc(100% - 20px);
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+
+
+.project {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Fixed width */
+    height: 400px; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project img {
+    width: 100%; /* Scale image to fit */
+    height: 200px; /* Fixed height for the image */
+    object-fit: cover; /* Ensures the image maintains aspect ratio while filling the space */
+    border-radius: 4px;
+}
+
+.project p {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.project button {
+    padding: 5px 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.project button:hover {
+    background: #0056b3;
+}
+/* Contact Section */
+#contact {
+    background: #333;
+    color: white;
+}
+
+form {
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+form input, form textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+form button {
+    display: block;
+    width: 100%;
+}
