@@ -3,143 +3,673 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="Style.css">
+    <title>Ripple Chohan | Web Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Modern CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Custom Properties */
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #00ff88;
+            --accent: #ff2e63;
+            --accent-2: #00c2ff;
+            --accent-3: #892cdc;
+            --accent-4: #f8d210;
+            --gradient-1: linear-gradient(120deg, #ff2e63, #892cdc);
+            --gradient-2: linear-gradient(120deg, #00ff88, #00c2ff);
+            --gradient-3: linear-gradient(to right, #892cdc, #ff2e63);
+            --bg: #0f0f1a;
+            --bg-light: #16163a;
+            --text: #a0a0c0;
+            --text-bright: #eeeeff;
+            --white: #ffffff;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Base Styles */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Global Styles */
+        ::selection {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-bright);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-2);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem;
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            list-style: none;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 10%;
+            min-height: 100vh;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--secondary);
+            z-index: -1;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover::before {
+            transform: translate(-10px, -10px);
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 100px 10%;
+            min-height: 100vh;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--accent-2);
+        }
+
+        .project-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .project-card * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 100px 10%;
+            min-height: 100vh;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 100px 10%;
+            min-height: 100vh;
+            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)),
+                        url('/api/placeholder/1920/1080') center/cover;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-2);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .skill-bar {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-bar-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-bar-progress {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1s ease;
+        }
+
+        .skill-bar.visible .skill-bar-fill {
+            transform: scaleX(1);
+        }
+
+        /* Navigation Menu */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            position: relative;
+        }
+
+        .nav-links::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links li a:hover + .nav-links::after {
+            width: 100%;
+        }
+
+        .nav-indicator {
+            position: absolute;
+            bottom: -2px;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: all 0.3s ease;
+        }
+
+        /* Enhanced Project Cards */
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 0.1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+    <nav id="navbar">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#blog">Blog</a></li>
+        </ul>
+    </nav>
 
-    <section id="home">
-        <!-- Left Panel -->
-        <div class="left-panel">
-            <div>
-                <h1>RIPPLE CHOHAN</h1> 
-                <p class="para0">
-                    <span>Web developer</span> <br> Passionate about building user-friendly and <br> visually engaging websites.<br>
-                    Ready to bring your vision to life!
-                </p>
-                <button class="btn" onclick="scrollToSection('about')">Learn More About Me</button>
-            </div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hello, I'm Ripple Chohan</h1>
+            <h2>I build things for the web</h2>
+            <p>I'm a web developer specializing in building exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products.</p>
         </div>
-
-       
-        
     </section>
 
-    <section id="about">
-        <div class="container">
-            <h1 class="aboutHead">About Me</h1>
-            <div class="about">
-            <div class="left">
-            <p>Hi, I’m Ripple Chohan, a passionate web developer with a flair for creating visually appealing and highly functional websites. With a strong foundation in programming and design, I specialize in crafting user-centric digital experiences that are both innovative and intuitive.
-
-                Whether I’m designing responsive interfaces, optimizing back-end functionality, or integrating complex databases, I thrive on turning ideas into reality. My expertise spans across HTML, CSS, JavaScript, and frameworks like React and Node.js, allowing me to build seamless solutions tailored to meet diverse client needs.
-                
-                Beyond coding, I bring a creative eye to problem-solving, ensuring that every project I touch stands out in both performance and aesthetics. When I’m not at my desk, you’ll likely find me exploring the latest tech trends, brainstorming new project ideas, or enjoying a good sci-fi series.
-                
-                Let’s create something amazing together!</p>
+    <section id="about" class="about">
+        <h2 class="section-title animate-on-scroll">About Me</h2>
+        <div class="about-grid">
+            <div class="about-content animate-on-scroll">
+                <p>Hello! My name is Ripple and I enjoy creating things that live on the internet. My interest in web development started back in 2020 when I decided to try editing custom Tumblr themes — turns out hacking together a custom reblog button taught me a lot about HTML & CSS!</p>
+                <p>Fast-forward to today, I am a second-year student majoring in Computer Information Systems.</p>
             </div>
-            <div class="right"> <img id="rippleimage" src="Ripple.jpg" alt=""> </div>
+            <div class="about-image animate-on-scroll">
+                <img src="/api/placeholder/400/400" alt="John Doe">
             </div>
         </div>
     </section>
 
-    <section id="projects">
-        <div class="container">
-        <h1>Projects</h1>
-        <div id="project-list">
-            <!-- Dynamically added projects will appear here -->
-        </div>
-        <div id="add-project">
-            <h2>Add a New Project</h2>
-            <input type="file" id="zip-upload" accept=".zip">
-            <input type="file" id="cover-upload" accept="image/*">
-            <textarea id="project-description" placeholder="Enter project description"></textarea>
-            <button id="add-project-btn">Add Project</button>
-        </div>
+    <section id="projects" class="projects">
+        <h2 class="section-title animate-on-scroll">Some Things I've Built</h2>
+        <div class="project-grid">
+            <div class="project-card animate-on-scroll">
+                <h3>Featured Project</h3>
+                <p>A minimal, dark blue theme for VS Code, Sublime Text, Atom, iTerm, and more.</p>
+            </div>
+            <div class="project-card animate-on-scroll">
+                <h3>E-Commerce Platform</h3>
+                <p>A full-featured online store with cart functionality and payment processing.</p>
+            </div>
+            <div class="project-card animate-on-scroll">
+                <h3>Weather App</h3>
+                <p>A beautiful weather application with real-time updates and forecasting.</p>
+            </div>
         </div>
     </section>
 
-    <section id="contact">
-        <div class="container">
-            <h1>Contact Me</h1>
-            <form>
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" rows="5" required></textarea>
-                <button class="btn" type="submit">Send</button>
-            </form>
+    <section id="blog" class="blog">
+        <h2 class="section-title animate-on-scroll">Latest Articles</h2>
+        <div class="blog-grid">
+            <article class="blog-card animate-on-scroll">
+                <div class="blog-content">
+                    <h3>Understanding CSS Grid</h3>
+                    <p>A comprehensive guide to mastering CSS Grid layout...</p>
+                </div>
+            </article>
+            <article class="blog-card animate-on-scroll">
+                <div class="blog-content">
+                    <h3>JavaScript Best Practices</h3>
+                    <p>Tips and tricks for writing better JavaScript code...</p>
+                </div>
+            </article>
+            <article class="blog-card animate-on-scroll">
+                <div class="blog-content">
+                    <h3>Web Performance</h3>
+                    <p>Optimizing your website for better performance...</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2 class="section-title animate-on-scroll">My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category animate-on-scroll">
+                <h3>Frontend Development</h3>
+                <div class="skill-bar">
+                    <div class="skill-bar-title">
+                        <span>HTML5</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar-progress">
+                        <div class="skill-bar-fill" style="transform: scaleX(0.9);"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-bar-title">
+                        <span>CSS3/SASS</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-progress">
+                        <div class="skill-bar-fill" style="transform: scaleX(0.85);"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-bar-title">
+                        <span>JavaScript</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar-progress">
+                        <div class="skill-bar-fill" style="transform: scaleX(0.8);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category animate-on-scroll">
+                <h3>Frameworks & Libraries</h3>
+                <div class="skill-bar">
+                    <div class="skill-bar-title">
+                        <span>React</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar-progress">
+                        <div class="skill-bar-fill" style="transform: scaleX(0.75);"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-bar-title">
+                        <span>Bootstrap</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-progress">
+                        <div class="skill-bar-fill" style="transform: scaleX(0.85);"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-bar-title">
+                        <span>jQuery</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar-progress">
+                        <div class="skill-bar-fill" style="transform: scaleX(0.7);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category animate-on-scroll">
+                <h3>Tools & Technologies</h3>
+                <div class="skill-bar">
+                    <div class="skill-bar-title">
+                        <span>Git</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar-progress">
+                        <div class="skill-bar-fill" style="transform: scaleX(0.8);"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-bar-title">
+                        <span>Webpack</span>
+                        <span>65%</span>
+                    </div>
+                    <div class="skill-bar-progress">
+                        <div class="skill-bar-fill" style="transform: scaleX(0.65);"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-bar-title">
+                        <span>Responsive Design</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar-progress">
+                        <div class="skill-bar-fill" style="transform: scaleX(0.9);"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <script>
-        function scrollToSection(sectionId) {
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+        // Navbar Hide/Show on Scroll
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
 
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
-<script>
-    const addProjectButton = document.getElementById('add-project-btn');
-    const projectList = document.getElementById('project-list');
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll) {
+                navbar.classList.add('nav-hidden');
+            } else {
+                navbar.classList.remove('nav-hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
 
-    addProjectButton.addEventListener('click', () => {
-        const zipFile = document.getElementById('zip-upload').files[0];
-        const coverImage = document.getElementById('cover-upload').files[0];
-        const description = document.getElementById('project-description').value;
-
-        if (!zipFile || !coverImage || !description) {
-            alert('Please provide a ZIP file, a cover image, and a description.');
-            return;
-        }
-
-        const reader = new FileReader();
-
-        // Process ZIP file
-        reader.onload = async (event) => {
-            const zip = await JSZip.loadAsync(event.target.result);
-
-            // Create a new project container
-            const projectDiv = document.createElement('div');
-            projectDiv.className = 'project';
-
-            // Process the cover image
-            const coverReader = new FileReader();
-            coverReader.onload = (coverEvent) => {
-                projectDiv.innerHTML = `
-                    <img src="${coverEvent.target.result}" alt="Cover Image">
-                    <p>${description}</p>
-                    <button class="view-files-btn">View Files</button>
-                `;
-                projectList.appendChild(projectDiv);
-
-                // Add file viewing functionality
-                const viewFilesButton = projectDiv.querySelector('.view-files-btn');
-                viewFilesButton.addEventListener('click', () => {
-                    const fileList = Object.keys(zip.files).map(fileName => `<li>${fileName}</li>`).join('');
-                    const fileDisplay = document.createElement('ul');
-                    fileDisplay.innerHTML = fileList;
-                    projectDiv.appendChild(fileDisplay);
-                });
-            };
-            coverReader.readAsDataURL(coverImage);
+        // Scroll Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
         };
-        reader.readAsArrayBuffer(zipFile);
 
-        // Clear input fields after adding the project
-        document.getElementById('zip-upload').value = '';
-        document.getElementById('cover-upload').value = '';
-        document.getElementById('project-description').value = '';
-    });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
+        document.querySelectorAll('.animate-on-scroll').forEach((element) => {
+            observer.observe(element);
+        });
 
-</script>
+        // Skills Animation
+        const skillBars = document.querySelectorAll('.skill-bar');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    const fill = entry.target.querySelector('.skill-bar-fill');
+                    if (fill) {
+                        fill.style.transform = `scaleX(${fill.getAttribute('data-progress') || '0'})`;
+                    }
+                }
+            });
+        }, observerOptions);
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+        // Navigation Indicator
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
