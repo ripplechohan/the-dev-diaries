@@ -778,18 +778,27 @@ document.querySelectorAll('.animate-on-scroll').forEach((element) => {
 });
 
 // Skills Animation
+// Skill bar animation fix
 const skillBars = document.querySelectorAll('.skill-bar');
 const skillObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
             const fill = entry.target.querySelector('.skill-bar-fill');
+            const percentText = entry.target.querySelector('.skill-bar-title span:last-child').textContent;
             if (fill) {
-                fill.style.transform = `scaleX(${fill.getAttribute('data-progress') || '0'})`;
+                // Extract percentage value from the text (e.g., "90%" -> 0.9)
+                const percentValue = parseFloat(percentText) / 100;
+                // Apply the transform
+                fill.style.transform = `scaleX(${percentValue})`;
             }
         }
     });
-}, observerOptions);
+}, {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+});
 
 skillBars.forEach(bar => {
     skillObserver.observe(bar);
