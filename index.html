@@ -5,513 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ripple Chohan | Web Developer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Modern CSS Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Custom Properties */
-        :root {
-            --primary: #1a1a2e;
-            --secondary: #00ff88;
-            --accent: #ff2e63;
-            --accent-2: #00c2ff;
-            --accent-3: #892cdc;
-            --accent-4: #f8d210;
-            --gradient-1: linear-gradient(120deg, #ff2e63, #892cdc);
-            --gradient-2: linear-gradient(120deg, #00ff88, #00c2ff);
-            --gradient-3: linear-gradient(to right, #892cdc, #ff2e63);
-            --bg: #0f0f1a;
-            --bg-light: #16163a;
-            --text: #a0a0c0;
-            --text-bright: #eeeeff;
-            --white: #ffffff;
-            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Base Styles */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-light) 100%);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Enhanced Global Styles */
-        ::selection {
-            background: var(--accent);
-            color: var(--white);
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            color: var(--text-bright);
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--accent-2);
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: var(--secondary);
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            width: 100%;
-            padding: 1.5rem;
-            background-color: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-hidden {
-            transform: translateY(-100%);
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            list-style: none;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 10%;
-        }
-
-        .hero-content {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            color: var(--text);
-            margin-bottom: 2rem;
-        }
-
-        .hero p {
-            max-width: 600px;
-            margin-bottom: 2rem;
-        }
-
-        /* About Section */
-        .about {
-            padding: 100px 10%;
-            min-height: 100vh;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 3fr 2fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 100%;
-            height: 100%;
-            border: 2px solid var(--secondary);
-            z-index: -1;
-            transition: transform 0.3s ease;
-        }
-
-        .about-image:hover::before {
-            transform: translate(-10px, -10px);
-        }
-
-        .about img {
-            width: 100%;
-            border-radius: 4px;
-        }
-
-        /* IMPROVED Projects Section */
-        .projects {
-            padding: 100px 10%;
-            min-height: 100vh;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--white);
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gradient-1);
-            border-radius: 2px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .project-card {
-            background: rgba(22, 28, 47, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            color: var(--white);
-            position: relative;
-            display: inline-block;
-        }
-
-        .project-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--accent-2);
-            transition: width 0.3s ease;
-        }
-
-        .project-card:hover .project-title::after {
-            width: 100%;
-        }
-
-        .project-description {
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: rgba(0, 194, 255, 0.1);
-            color: var(--accent-2);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 15px;
-            margin-top: auto;
-        }
-
-        .project-link {
-            padding: 8px 20px;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .github-link {
-            background: var(--gradient-1);
-            color: white;
-            box-shadow: 0 4px 10px rgba(255, 46, 99, 0.3);
-        }
-
-        .github-link:hover {
-            box-shadow: 0 6px 15px rgba(255, 46, 99, 0.5);
-            transform: translateY(-3px);
-            color: white;
-        }
-
-        .live-link {
-            background: var(--gradient-2);
-            color: var(--primary);
-            box-shadow: 0 4px 10px rgba(0, 255, 136, 0.3);
-        }
-
-        .live-link:hover {
-            box-shadow: 0 6px 15px rgba(0, 255, 136, 0.5);
-            transform: translateY(-3px);
-            color: var(--primary);
-        }
-
-        /* Blog Section */
-        .blog {
-            padding: 100px 10%;
-            min-height: 100vh;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .blog-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .blog-content {
-            padding: 1.5rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Skills Section */
-        .skills {
-            padding: 100px 10%;
-            min-height: 100vh;
-            background: linear-gradient(rgba(10, 25, 47, 0.9), rgba(10, 25, 47, 0.9)),
-                        url('/api/placeholder/1920/1080') center/cover;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-category {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--box-shadow);
-        }
-
-        .skill-category:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .skill-category h3 {
-            color: var(--accent-2);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .skill-bar {
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-bar-title {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-bar-progress {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-bar-fill {
-            height: 100%;
-            background: var(--gradient-1);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 1s ease;
-        }
-
-        .skill-bar.visible .skill-bar-fill {
-            transform: scaleX(1);
-        }
-
-        /* Navigation Menu */
-        .menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-            z-index: 1000;
-        }
-
-        .nav-links {
-            position: relative;
-        }
-
-        .nav-links::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-1);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links li a:hover + .nav-links::after {
-            width: 100%;
-        }
-
-        .nav-indicator {
-            position: absolute;
-            bottom: -2px;
-            height: 2px;
-            background: var(--gradient-1);
-            transition: all 0.3s ease;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .hero h2 {
-                font-size: 2rem;
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            .nav-links {
-                display: none;
-            }
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .project-links {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <link href="style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Added Typed.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
 </head>
-<body>
+<body class="back-row-toggle splat-toggle">
     <nav id="navbar">
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -522,11 +21,16 @@
     </nav>
 
     <section id="home" class="hero">
+        <!-- Rain Animation Elements -->
+    
+        
         <div class="hero-content">
             <h1>Hello, I'm Ripple Chohan</h1>
-            <h2>I build things for the web</h2>
+            <h2>I'm <span class="typing"></span></h2>
             <p>I'm a web developer specializing in building exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products.</p>
         </div>
+        
+        
     </section>
 
    <section id="about" class="about">
@@ -557,7 +61,7 @@
                     </div>
                     <p class="project-description">A comprehensive LMS featuring course creation, student enrollment, progress tracking, and interactive assessments. Designed with a focus on user experience and responsive design.</p>
                     <div class="project-links">
-                        <a href="https://github.com/ripple-chohan/learning-management-system" class="project-link github-link" target="_blank">
+                        <a href="https://github.com/ripplechohan/LMS/" class="project-link github-link" target="_blank">
                             <i class="fab fa-github"></i> GitHub
                         </a>
                         <a href="#" class="project-link live-link" target="_blank">
@@ -624,19 +128,19 @@
         <div class="blog-grid">
             <article class="blog-card animate-on-scroll">
                 <div class="blog-content">
-                    <h3>Understanding CSS Grid</h3>
-                    <p>A comprehensive guide to mastering CSS Grid layout...</p>
+                    <h3><a href="blog_ai_tools.html">Building with AI</a></h3>
+                    <p> AI-powered development tools and their impact on students...</p>
                 </div>
             </article>
-            <article class="blog-card animate-on-scroll">
+             <article class="blog-card animate-on-scroll">
                 <div class="blog-content">
-                    <h3>JavaScript Best Practices</h3>
+                    <h3><a href="blog_javascript_practices.html">JavaScript Best Practices</a></h3>
                     <p>Tips and tricks for writing better JavaScript code...</p>
                 </div>
             </article>
             <article class="blog-card animate-on-scroll">
                 <div class="blog-content">
-                    <h3>Web Performance</h3>
+                    <h3><a href="blog_web_performnce.html">Web Performance</a></h3>
                     <p>Optimizing your website for better performance...</p>
                 </div>
             </article>
@@ -742,186 +246,202 @@
     </section>
 
     <script>
-       // Navbar Hide/Show on Scroll
-let lastScroll = 0;
-const navbar = document.getElementById('navbar');
+        // Navbar Hide/Show on Scroll
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > lastScroll) {
-        navbar.classList.add('nav-hidden');
-    } else {
-        navbar.classList.remove('nav-hidden');
-    }
-    
-    lastScroll = currentScroll;
-});
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll) {
+                navbar.classList.add('nav-hidden');
+            } else {
+                navbar.classList.remove('nav-hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
 
-// Scroll Animation
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
+        // Scroll Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-document.querySelectorAll('.animate-on-scroll').forEach((element) => {
-    observer.observe(element);
-});
+        document.querySelectorAll('.animate-on-scroll').forEach((element) => {
+            observer.observe(element);
+        });
 
-// Skills Animation
-// Skill bar animation fix
-const skillBars = document.querySelectorAll('.skill-bar');
-const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            const fill = entry.target.querySelector('.skill-bar-fill');
-            const percentText = entry.target.querySelector('.skill-bar-title span:last-child').textContent;
-            if (fill) {
-                // Extract percentage value from the text (e.g., "90%" -> 0.9)
-                const percentValue = parseFloat(percentText) / 100;
-                // Apply the transform
-                fill.style.transform = `scaleX(${percentValue})`;
+        // Skills Animation
+        // Skill bar animation fix
+        const skillBars = document.querySelectorAll('.skill-bar');
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    const fill = entry.target.querySelector('.skill-bar-fill');
+                    const percentText = entry.target.querySelector('.skill-bar-title span:last-child').textContent;
+                    if (fill) {
+                        // Extract percentage value from the text (e.g., "90%" -> 0.9)
+                        const percentValue = parseFloat(percentText) / 100;
+                        // Apply the transform
+                        fill.style.transform = `scaleX(${percentValue})`;
+                    }
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        });
+
+        skillBars.forEach(bar => {
+            skillObserver.observe(bar);
+        });
+
+        // Navigation Indicator
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Project Card Animation Enhancement
+        const projectCards = document.querySelectorAll('.project-card');
+
+        projectCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const titleAfter = card.querySelector('.project-title');
+                if (titleAfter) {
+                    titleAfter.style.setProperty('--title-underline-width', '100%');
+                }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const titleAfter = card.querySelector('.project-title');
+                if (titleAfter) {
+                    titleAfter.style.setProperty('--title-underline-width', '40px');
+                }
+            });
+            
+            // GitHub link functionality
+            const githubLink = card.querySelector('.github-link');
+            if (githubLink) {
+                card.addEventListener('click', (e) => {
+                    // Only trigger if not clicking directly on a link
+                    if (!e.target.closest('a')) {
+                        githubLink.click();
+                    }
+                });
+            }
+        });
+
+        // Add custom scroll reveal animations
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        const revealOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+
+        // Theme toggle functionality (if needed)
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+            });
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
             }
         }
-    });
-}, {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-});
 
-skillBars.forEach(bar => {
-    skillObserver.observe(bar);
-});
-
-// Navigation Indicator
-const navLinks = document.querySelectorAll('.nav-links a');
-const sections = document.querySelectorAll('section');
-
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (window.pageYOffset >= sectionTop - 60) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+        // Fix for project title animation
+        document.querySelectorAll('.project-title').forEach(title => {
+            // Add CSS variable for better animation control
+            title.style.setProperty('--title-underline-width', '40px');
         });
-    });
-});
 
-// Project Card Animation Enhancement
-const projectCards = document.querySelectorAll('.project-card');
+        // Add mobile menu functionality
+        const menuButton = document.querySelector('.menu-btn');
+        const mobileMenu = document.querySelector('.nav-links');
 
-projectCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        const titleAfter = card.querySelector('.project-title');
-        if (titleAfter) {
-            titleAfter.style.setProperty('--title-underline-width', '100%');
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+                menuButton.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !menuButton.contains(e.target) && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    menuButton.classList.remove('active');
+                }
+            });
         }
-    });
-    
-    card.addEventListener('mouseleave', () => {
-        const titleAfter = card.querySelector('.project-title');
-        if (titleAfter) {
-            titleAfter.style.setProperty('--title-underline-width', '40px');
-        }
-    });
-    
-    // GitHub link functionality
-    const githubLink = card.querySelector('.github-link');
-    if (githubLink) {
-        card.addEventListener('click', (e) => {
-            // Only trigger if not clicking directly on a link
-            if (!e.target.closest('a')) {
-                githubLink.click();
-            }
+
+        // NEW: Typed.js Animation for multiple dev-related phrases
+        document.addEventListener('DOMContentLoaded', function() {
+            var typing = new Typed(".typing", {
+                strings: ["a Full Stack Developer.", "a Problem Solver.", "a Tech Enthusiast. "],
+                typeSpeed: 100,
+                backSpeed: 60,
+                loop: true,
+                smartBackspace: true,
+                showCursor: true,
+                cursorChar: '|',
+                autoInsertCss: true
+            });
         });
-    }
-});
-
-// Add custom scroll reveal animations
-const revealElements = document.querySelectorAll('.reveal-on-scroll');
-const revealOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
-
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('revealed');
-        }
-    });
-}, revealOptions);
-
-revealElements.forEach(element => {
-    revealObserver.observe(element);
-});
-
-// Theme toggle functionality (if needed)
-const themeToggle = document.getElementById('theme-toggle');
-if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
-        localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-    });
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-mode');
-    }
-}
-
-// Fix for project title animation
-document.querySelectorAll('.project-title').forEach(title => {
-    // Add CSS variable for better animation control
-    title.style.setProperty('--title-underline-width', '40px');
-});
-
-// Add mobile menu functionality
-const menuButton = document.querySelector('.menu-btn');
-const mobileMenu = document.querySelector('.nav-links');
-
-if (menuButton && mobileMenu) {
-    menuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('active');
-        menuButton.classList.toggle('active');
-    });
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!mobileMenu.contains(e.target) && !menuButton.contains(e.target) && mobileMenu.classList.contains('active')) {
-            mobileMenu.classList.remove('active');
-            menuButton.classList.remove('active');
-        }
-    });
-}
     </script>
+</body>
+</html>
